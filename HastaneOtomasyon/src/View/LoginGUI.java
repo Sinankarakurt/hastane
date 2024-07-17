@@ -13,7 +13,10 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+
 import java.awt.event.ActionEvent;
+//--------------------------------------
+import Helper.*;
 
 public class LoginGUI extends JFrame
 {
@@ -24,6 +27,8 @@ public class LoginGUI extends JFrame
 	private JPasswordField pfld_hastaPass;
 	private JTextField fld_doctorTc;
 	private JPasswordField pfld_doctorPass;
+	
+	
 
 	/**
 	 * Launch the application.
@@ -106,8 +111,11 @@ public class LoginGUI extends JFrame
 		w_hasta.add(btn_hastaRegister);
 		
 		JButton btn_hastaLogin = new JButton("Giriş Yap");
-		btn_hastaLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btn_hastaLogin.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				
 			}
 		});
 		btn_hastaLogin.setBounds(268, 140, 150, 30);
@@ -138,6 +146,23 @@ public class LoginGUI extends JFrame
 		w_doctor.add(pfld_doctorPass);
 		
 		JButton btn_doctorLogin = new JButton("Giriş Yap");
+		btn_doctorLogin.addActionListener
+		(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+			if (fld_doctorTc.getText().length()==0 || pfld_doctorPass.getText().length()==0) 
+			{
+				Helper.showMsg("fill");
+			} else
+			{
+				
+			}
+				
+				
+			}
+		}
+		);
 		btn_doctorLogin.setBounds(168, 139, 250, 30);
 		w_doctor.add(btn_doctorLogin);
 //----------------------------------------------------
