@@ -14,6 +14,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 //--------------------------------------
 import Helper.*;
@@ -159,7 +162,30 @@ public class LoginGUI extends JFrame
 				Helper.showMsg("fill");
 			} else
 			{
-				Connection conn=con.connDb();
+				
+				try
+				{
+					Connection conn=con.connDb();
+					Statement st;
+					st = conn.createStatement();
+					ResultSet rs=st.executeQuery("SELECT * FROM user");
+					while (rs.next())
+					{
+						if (fld_doctorTc.getText().equals(rs.getString("tcno"))&& pfld_doctorPass.getText().equals(rs.getString("password"))) 
+						{
+							System.out.println(rs.getString("name"));
+						} else {
+
+						}
+						
+					}
+					
+				} catch (SQLException e1)
+				{
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 				
 				

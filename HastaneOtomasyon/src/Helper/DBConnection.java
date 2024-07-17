@@ -15,7 +15,7 @@ public class DBConnection
 	{
 		try 
 		{
-			this.c=DriverManager.getConnection("jdbc:mysql://localhost:3306","root","");
+			this.c=DriverManager.getConnection("jdbc:mysql://localhost:3306/hospital","root","");
 			return c;
 		} catch (SQLException e) 
 		{
