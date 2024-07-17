@@ -8,6 +8,10 @@ public class Bashekim extends User
 		super(id, tcno, name, pass, type);
 		// TODO Auto-generated constructor stub
 	}
+
+	public Bashekim() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 	

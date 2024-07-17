@@ -20,6 +20,7 @@ import java.sql.Statement;
 import java.awt.event.ActionEvent;
 //--------------------------------------
 import Helper.*;
+import Model.*;
 
 public class LoginGUI extends JFrame
 {
@@ -173,7 +174,15 @@ public class LoginGUI extends JFrame
 					{
 						if (fld_doctorTc.getText().equals(rs.getString("tcno"))&& pfld_doctorPass.getText().equals(rs.getString("password"))) 
 						{
-							System.out.println(rs.getString("name"));
+							Bashekim bhekim=new Bashekim();
+							
+							bhekim.setId(rs.getInt("id"));
+							bhekim.setTcno(rs.getString("tcno"));
+							bhekim.setPass(rs.getString("password"));
+							bhekim.setName(rs.getString("name"));
+							bhekim.setType(rs.getString("type"));
+							
+							
 						} else {
 
 						}
