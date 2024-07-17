@@ -182,7 +182,9 @@ public class LoginGUI extends JFrame
 							bhekim.setName(rs.getString("name"));
 							bhekim.setType(rs.getString("type"));
 							
-							
+							BashekimGUI bGUI=new BashekimGUI(bhekim);
+							bGUI.setVisible(true);
+							dispose();							
 						} else {
 
 						}
