@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-
+import java.sql.Connection;
 import java.awt.event.ActionEvent;
 //--------------------------------------
 import Helper.*;
@@ -27,6 +27,9 @@ public class LoginGUI extends JFrame
 	private JPasswordField pfld_hastaPass;
 	private JTextField fld_doctorTc;
 	private JPasswordField pfld_doctorPass;
+
+//---------------------------------------------------------------
+	private DBConnection con=new DBConnection();
 	
 	
 
@@ -156,7 +159,7 @@ public class LoginGUI extends JFrame
 				Helper.showMsg("fill");
 			} else
 			{
-				
+				Connection conn=con.connDb();
 			}
 				
 				
