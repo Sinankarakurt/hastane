@@ -12,6 +12,13 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class BashekimGUI extends JFrame {
 
@@ -20,6 +27,11 @@ public class BashekimGUI extends JFrame {
 	
 	// ----------
 	public static Bashekim bashekim=new Bashekim();
+	private JTextField fld_doctorName;
+	private JTextField fld_doctorTcno;
+	private JTextField fld_doctorId;
+	private JPasswordField pfld_doctorPass;
+	private JTable table_doctor;
 
 	/**
 	 * Launch the application.
@@ -51,14 +63,81 @@ public class BashekimGUI extends JFrame {
 		setContentPane(w_pane);
 		w_pane.setLayout(null);
 		
-		JLabel lbl_bashekmName = new JLabel("Hoşgeliniz Sayın"+bashekim.getName());
-		lbl_bashekmName.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 14));
-		lbl_bashekmName.setBounds(10, 11, 198, 26);
-		w_pane.add(lbl_bashekmName);
+		JLabel lbl_bashekimName = new JLabel("Hoşgeliniz Sayın"+bashekim.getName());
+		lbl_bashekimName.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 14));
+		lbl_bashekimName.setBounds(10, 11, 198, 26);
+		w_pane.add(lbl_bashekimName);
 		
-		JButton btnNewButton = new JButton("Çıkış");
-		btnNewButton.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 14));
-		btnNewButton.setBounds(525, 11, 110, 26);
-		w_pane.add(btnNewButton);
+		JButton btn_cikis = new JButton("Çıkış");
+		btn_cikis.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 14));
+		btn_cikis.setBounds(525, 11, 110, 26);
+		w_pane.add(btn_cikis);
+		
+		JTabbedPane w_tabpane = new JTabbedPane(JTabbedPane.TOP);
+		w_tabpane.setBounds(10, 38, 664, 412);
+		w_pane.add(w_tabpane);
+		
+		JPanel w_doctorLogin = new JPanel();
+		w_doctorLogin.setBackground(Color.WHITE);
+		w_tabpane.addTab("Doktor Yönetimi", null, w_doctorLogin, null);
+		w_doctorLogin.setLayout(null);
+		
+		JLabel lbl_doctorName = new JLabel("Adı Soyadı");
+		lbl_doctorName.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 14));
+		lbl_doctorName.setBounds(452, 11, 186, 29);
+		w_doctorLogin.add(lbl_doctorName);
+		
+		fld_doctorName = new JTextField();
+		fld_doctorName.setBounds(452, 46, 186, 29);
+		w_doctorLogin.add(fld_doctorName);
+		fld_doctorName.setColumns(10);
+		
+		JLabel lbl_doctorTcno = new JLabel("Tc No");
+		lbl_doctorTcno.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 14));
+		lbl_doctorTcno.setBounds(452, 86, 186, 29);
+		w_doctorLogin.add(lbl_doctorTcno);
+		
+		fld_doctorTcno = new JTextField();
+		fld_doctorTcno.setColumns(10);
+		fld_doctorTcno.setBounds(452, 121, 186, 29);
+		w_doctorLogin.add(fld_doctorTcno);
+		
+		JLabel lbl_doctorPass = new JLabel("Şifre");
+		lbl_doctorPass.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 14));
+		lbl_doctorPass.setBounds(452, 161, 186, 29);
+		w_doctorLogin.add(lbl_doctorPass);
+		
+		JButton btn_addDoctor = new JButton("Ekle");
+		btn_addDoctor.setBounds(452, 236, 186, 29);
+		w_doctorLogin.add(btn_addDoctor);
+		
+		JLabel lbl_doctorId = new JLabel("kullanıcı ID");
+		lbl_doctorId.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 14));
+		lbl_doctorId.setBounds(452, 270, 186, 29);
+		w_doctorLogin.add(lbl_doctorId);
+		
+		fld_doctorId = new JTextField();
+		fld_doctorId.setColumns(10);
+		fld_doctorId.setBounds(452, 305, 186, 29);
+		w_doctorLogin.add(fld_doctorId);
+		
+		JButton btn_deleteDoctor = new JButton("Sil");
+		btn_deleteDoctor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btn_deleteDoctor.setBounds(452, 345, 186, 29);
+		w_doctorLogin.add(btn_deleteDoctor);
+		
+		pfld_doctorPass = new JPasswordField();
+		pfld_doctorPass.setBounds(452, 201, 186, 29);
+		w_doctorLogin.add(pfld_doctorPass);
+		
+		JScrollPane scrollPane_doctor = new JScrollPane();
+		scrollPane_doctor.setBounds(10, 11, 420, 362);
+		w_doctorLogin.add(scrollPane_doctor);
+		
+		table_doctor = new JTable();
+		scrollPane_doctor.setViewportView(table_doctor);
 	}
 }
