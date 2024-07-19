@@ -63,7 +63,7 @@ public class BashekimGUI extends JFrame {
 		setContentPane(w_pane);
 		w_pane.setLayout(null);
 		
-		JLabel lbl_bashekimName = new JLabel("Hoşgeliniz Sayın"+bashekim.getName());
+		JLabel lbl_bashekimName = new JLabel("Hoşgeliniz Sayın   :  "+bashekim.getName());
 		lbl_bashekimName.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 14));
 		lbl_bashekimName.setBounds(10, 11, 198, 26);
 		w_pane.add(lbl_bashekimName);
