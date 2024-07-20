@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import Model.*;
 
@@ -16,6 +17,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -32,7 +34,10 @@ public class BashekimGUI extends JFrame {
 	private JTextField fld_doctorId;
 	private JPasswordField pfld_doctorPass;
 	private JTable table_doctor;
-
+	//-----------------------------------------------------------
+	private DefaultTableModel doctorModel=null;
+	private Object [] doctorData=null;
+//--------------------------------------------------
 	/**
 	 * Launch the application.
 	 */
@@ -53,7 +58,33 @@ public class BashekimGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public BashekimGUI(Bashekim bashekim) {
+	public BashekimGUI(Bashekim bashekim) 
+	{
+		doctorModel=new DefaultTableModel();
+		Object [] colDoctorName= new Object[4];
+		colDoctorName[0]="ID";
+		colDoctorName[1]="Tc No";
+		colDoctorName[2]="Ad Soyad";
+		colDoctorName[3]="Şifre";
+		doctorModel.setColumnIdentifiers(colDoctorName);
+//-------------------------------------------------------
+		doctorData=new Object[4];
+		
+		try 
+		{
+			for (int i = 0; i < bashekim.getDoctorList().size(); i++)
+			{
+				doctorData[0]=bashekim.getDoctorList().get(i).getId();
+				doctorData[1]=bashekim.getDoctorList().get(i).getTcno();
+				doctorData[2]=bashekim.getDoctorList().get(i).getName();
+				doctorData[3]=bashekim.getDoctorList().get(i).getPass();
+				doctorModel.addRow(doctorData);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		setTitle("Hastane Yönetim Sistemi");
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -138,8 +169,9 @@ public class BashekimGUI extends JFrame {
 		scrollPane_doctor.setBounds(10, 11, 420, 362);
 		w_doctorLogin.add(scrollPane_doctor);
 		
-		table_doctor = new JTable();
+		table_doctor = new JTable(doctorModel);
 		scrollPane_doctor.setViewportView(table_doctor);
+		
 		
 		
 	}

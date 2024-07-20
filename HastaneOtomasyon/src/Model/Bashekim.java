@@ -39,16 +39,13 @@ public class Bashekim extends User
 			obj=new User(rs.getInt("id"), rs.getString("tcno"), rs.getString("name"), rs.getString("password"), rs.getString("type"));
 			list.add(obj);
 			}
+		
 		} catch (SQLException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		finally {
-			st.close();
-			rs.close();
-			con.close();
-		}
+	
 	return list;
 	
 	}
