@@ -42,6 +42,7 @@ public class BashekimGUI extends JFrame {
 				try {
 					BashekimGUI frame = new BashekimGUI(bashekim);
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -139,5 +140,7 @@ public class BashekimGUI extends JFrame {
 		
 		table_doctor = new JTable();
 		scrollPane_doctor.setViewportView(table_doctor);
+		
+		
 	}
 }
