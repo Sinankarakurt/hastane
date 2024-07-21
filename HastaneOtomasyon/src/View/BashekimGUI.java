@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import Helper.*;
 
 import Model.*;
 
@@ -140,6 +141,26 @@ public class BashekimGUI extends JFrame {
 		w_doctorLogin.add(lbl_doctorPass);
 		
 		JButton btn_addDoctor = new JButton("Ekle");
+		btn_addDoctor.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				if (fld_doctorName.getText().length()==0|| 
+						fld_doctorTcno.getText().length()==0||
+						pfld_doctorPass.getText().length()==0)
+						
+				{
+					Helper.showMsg("fill");
+				}
+				else 
+				{
+			
+					
+
+				}
+				
+			}
+		});
 		btn_addDoctor.setBounds(452, 236, 186, 29);
 		w_doctorLogin.add(btn_addDoctor);
 		
