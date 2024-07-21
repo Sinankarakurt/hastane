@@ -154,9 +154,21 @@ public class BashekimGUI extends JFrame {
 				}
 				else 
 				{
-			
-					
+					try 
+					{
+		boolean control=bashekim.addDoctor(fld_doctorTcno.getText(), pfld_doctorPass.getText(), fld_doctorName.getText());
 
+		if (control)
+		{
+			Helper.showMsg("success");
+			fld_doctorName.setText(null);
+			pfld_doctorPass.setText(null);
+			fld_doctorTcno.setText(null);
+		}
+					} catch (Exception e2)
+					{
+						// TODO: handle exception
+					}
 				}
 				
 			}
