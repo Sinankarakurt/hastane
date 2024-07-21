@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import Helper.*;
 
@@ -18,6 +20,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
+import java.nio.channels.SelectionKey;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
@@ -206,6 +209,19 @@ public class BashekimGUI extends JFrame {
 		
 		table_doctor = new JTable(doctorModel);
 		scrollPane_doctor.setViewportView(table_doctor);
+		
+		table_doctor.getSelectionModel().addListSelectionListener
+		(new ListSelectionListener(	) 
+		{
+			@Override
+			public void valueChanged(ListSelectionEvent e) 
+			{
+	
+				String drId=table_doctor.getValueAt(table_doctor.getSelectedRow(), 0).toString();
+				fld_doctorId.setText(drId);
+			} 
+		}
+		);
 	
 		
 	}
@@ -230,5 +246,5 @@ public class BashekimGUI extends JFrame {
 		}
 		
 	}
-	
+//----------------------------------------------------	
 }
