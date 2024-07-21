@@ -1,10 +1,13 @@
 package Model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+
 
 public class Bashekim extends User 
 {
@@ -12,6 +15,7 @@ public class Bashekim extends User
 	Connection con=conn.connDb();
 	Statement st=null;
 	ResultSet rs=null;
+	PreparedStatement preparedStatement=null;
 //------------------------------------------------------------------------------
 	public Bashekim(int id, String tcno, String name, String pass, String type)
 	{
@@ -49,5 +53,32 @@ public class Bashekim extends User
 	return list;
 	
 	}
+//-----------------------------------------------------------
 	
+	public boolean addDoctor(String tcno, String pass, String name)// throws SQLException
+	{
+		String query="INSERT INTO user (tcno,password,name,type) values(?,?,?,?)";
+		boolean key=false;
+		try 
+		{
+			st=con.createStatement();
+			preparedStatement=con.prepareStatement(query);
+			preparedStatement.setString(1, tcno);
+			preparedStatement.setString(2, pass);
+			preparedStatement.setString(3, name);
+			preparedStatement.setString(4, "doktor");
+			preparedStatement.executeUpdate();
+			key=true;
+			
+		} catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (key) 
+			return true;
+		else 
+			return false;
+	}
+//--------------------------------------------------------------------------------------------
 }
