@@ -164,6 +164,7 @@ public class BashekimGUI extends JFrame {
 			fld_doctorName.setText(null);
 			pfld_doctorPass.setText(null);
 			fld_doctorTcno.setText(null);
+			updateDoctorModel();
 			
 		}
 					} catch (Exception e2)
