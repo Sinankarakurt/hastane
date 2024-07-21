@@ -164,6 +164,7 @@ public class BashekimGUI extends JFrame {
 			fld_doctorName.setText(null);
 			pfld_doctorPass.setText(null);
 			fld_doctorTcno.setText(null);
+			
 		}
 					} catch (Exception e2)
 					{
@@ -204,8 +205,29 @@ public class BashekimGUI extends JFrame {
 		
 		table_doctor = new JTable(doctorModel);
 		scrollPane_doctor.setViewportView(table_doctor);
-		
-		
+	
 		
 	}
+//--------------------------------------------
+	public void updateDoctorModel()
+	{
+		DefaultTableModel clearModel=(DefaultTableModel) table_doctor.getModel();
+		clearModel.setRowCount(0);
+		try 
+		{
+			for (int i = 0; i < bashekim.getDoctorList().size(); i++)
+			{
+				doctorData[0]=bashekim.getDoctorList().get(i).getId();
+				doctorData[1]=bashekim.getDoctorList().get(i).getTcno();
+				doctorData[2]=bashekim.getDoctorList().get(i).getName();
+				doctorData[3]=bashekim.getDoctorList().get(i).getPass();
+				doctorModel.addRow(doctorData);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 }
