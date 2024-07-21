@@ -10,15 +10,19 @@ public class Helper
 		
 		switch (str)
 		{
+//-----------------------------------
 		case "fill":
 			msg="Lütfen tüm alanları doldurunjuz";
-			
+						break;
+//-----------------------------------------		
+		case "success":
+			msg="İşlem başarılı";
 			break;
-		
-
+//---------------------------
 		default:
 			msg=str;
 			break;
+//---------------------------------
 		}
 		
 		
