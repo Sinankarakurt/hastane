@@ -81,4 +81,29 @@ public class Bashekim extends User
 			return false;
 	}
 //--------------------------------------------------------------------------------------------
+	
+	public boolean deleteDoctor(int id) //throws SQLException
+	{
+		String query="DELETE  FROM user WHERE id=?";
+		boolean key=false;
+		try 
+		{
+			preparedStatement=con.prepareStatement(query);
+			preparedStatement.setInt(1, id);
+			preparedStatement.executeUpdate();
+			key=true;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (key) 
+			return true;
+		else 
+			return false;
+	
+		}
+	
+	
+//---------------------------------------------------------------------------------
 }
