@@ -200,10 +200,32 @@ public class BashekimGUI extends JFrame {
 			{
 				if (fld_doctorId.getText().length()==0)
 				{
-					Helper.showMsg("fill");
+					Helper.showMsg("Lütfen geçerli bir doktor tanımlayınız");
 				}
 				else
 				{
+					if (Helper.confirm("sure"))
+					{
+						int selecId=Integer.parseInt(fld_doctorId.getText());
+						try
+						{
+							
+							boolean control=bashekim.deleteDoctor(selecId);
+							if (control) 
+							{
+								Helper.showMsg("success");
+								fld_doctorId.setText(null);
+								updateDoctorModel();
+							}
+							
+						} catch (Exception e2) {
+							// TODO: handle exception
+						}
+					}
+					
+					
+					
+					
 					
 				}
 			
@@ -230,8 +252,14 @@ public class BashekimGUI extends JFrame {
 			public void valueChanged(ListSelectionEvent e) 
 			{
 	
-				String drId=table_doctor.getValueAt(table_doctor.getSelectedRow(), 0).toString();
-				fld_doctorId.setText(drId);
+				try {
+					String drId=table_doctor.getValueAt(table_doctor.getSelectedRow(), 0).toString();
+					fld_doctorId.setText(drId);
+					
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+				
 			} 
 		}
 		);
