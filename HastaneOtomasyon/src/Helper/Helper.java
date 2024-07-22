@@ -1,11 +1,23 @@
 package Helper;
 
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 public class Helper 
 {
+	public static void optionPaneChangeButtonText()
+	{
+		UIManager.put("OptionPane.cancelButtonText", "İptal");
+		UIManager.put("OptionPane.yesButtonText", "Evet");
+		UIManager.put("OptionPane.noButtonText", "Hayır");
+		UIManager.put("OptionPane.okButtonText", "Tamam");
+	}
+	
+	//------------------------------------------------
 	public static void showMsg(String str)
 	{
+		optionPaneChangeButtonText();
+	
 		String msg;
 		
 		switch (str)
@@ -31,6 +43,7 @@ public class Helper
 //------------------------------------------
 	public static boolean confirm(String str)
 	{
+		optionPaneChangeButtonText();
 		String msg;
 		switch (str) {
 		case "sure":
