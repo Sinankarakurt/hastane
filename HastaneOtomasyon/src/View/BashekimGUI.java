@@ -8,6 +8,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+
+import org.xml.sax.helpers.ParserAdapter;
+
 import Helper.*;
 
 import Model.*;
@@ -193,7 +196,17 @@ public class BashekimGUI extends JFrame {
 		
 		JButton btn_deleteDoctor = new JButton("Sil");
 		btn_deleteDoctor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{
+				if (fld_doctorId.getText().length()==0)
+				{
+					Helper.showMsg("fill");
+				}
+				else
+				{
+					
+				}
+			
 			}
 		});
 		btn_deleteDoctor.setBounds(452, 345, 186, 29);
