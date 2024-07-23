@@ -106,9 +106,9 @@ public class Bashekim extends User
 	
 	
 //---------------------------------------------------------------------------------
-	public boolean updateDoctor(int id, String tcno,String pass, String name) //throws SQLException
+	public boolean updateDoctor(int id, String tcno,String name, String pass) //throws SQLException
 	{
-		String query="UPDATE user SET tcno=?, pass=?,name=? WHERE id=?";
+		String query="UPDATE user SET tcno=?, password=?,name=? WHERE id=?";
 		boolean key=false;
 		
 		try 
@@ -116,8 +116,9 @@ public class Bashekim extends User
 			st=con.createStatement();
 			preparedStatement=con.prepareStatement(query);
 			preparedStatement.setString(1, tcno);
-			preparedStatement.setString(2, pass);
-			preparedStatement.setString(3, name);
+			preparedStatement.setString(2, name);
+			preparedStatement.setString(3, pass);
+			preparedStatement.setInt(4, id);
 			preparedStatement.executeUpdate();
 			key=true;
 		} catch (SQLException e)
