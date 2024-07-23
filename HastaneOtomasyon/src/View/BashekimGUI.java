@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 import org.xml.sax.helpers.ParserAdapter;
@@ -193,9 +195,11 @@ public class BashekimGUI extends JFrame {
 		fld_doctorId.setColumns(10);
 		fld_doctorId.setBounds(452, 305, 186, 29);
 		w_doctorLogin.add(fld_doctorId);
-		
+//-----------------------------------------------------------------------------------		
 		JButton btn_deleteDoctor = new JButton("Sil");
-		btn_deleteDoctor.addActionListener(new ActionListener() {
+		btn_deleteDoctor.addActionListener
+		(new ActionListener()
+		{
 			public void actionPerformed(ActionEvent e)
 			{
 				if (fld_doctorId.getText().length()==0)
@@ -230,10 +234,12 @@ public class BashekimGUI extends JFrame {
 				}
 			
 			}
-		});
+		}
+		);
+
 		btn_deleteDoctor.setBounds(452, 345, 186, 29);
 		w_doctorLogin.add(btn_deleteDoctor);
-		
+//-------------------------------------------------------------------------------------		
 		pfld_doctorPass = new JPasswordField();
 		pfld_doctorPass.setBounds(452, 201, 186, 29);
 		w_doctorLogin.add(pfld_doctorPass);
@@ -263,10 +269,30 @@ public class BashekimGUI extends JFrame {
 			} 
 		}
 		);
-	
+//------------------------------------------------------------------------
+		
+		table_doctor.getModel().addTableModelListener(new TableModelListener()
+		{
+			
+			@Override
+			public void tableChanged(TableModelEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		
 		
 	}
-//--------------------------------------------
+//-------------------------------------------
+
+ 
+
+  
+	
+	
+	
+//-------------------------------
 	public void updateDoctorModel()
 	{
 		DefaultTableModel clearModel=(DefaultTableModel) table_doctor.getModel();
