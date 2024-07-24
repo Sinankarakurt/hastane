@@ -275,8 +275,24 @@ public class BashekimGUI extends JFrame {
 		{
 			
 			@Override
-			public void tableChanged(TableModelEvent e) {
-				// TODO Auto-generated method stub
+			public void tableChanged(TableModelEvent e)
+			{
+				if (e.getType()==TableModelEvent.UPDATE) 
+				{
+					int selId=Integer.parseInt(table_doctor.getValueAt(table_doctor.getSelectedRow(), 0).toString());
+					String selTcno=table_doctor.getValueAt(table_doctor.getSelectedRow(), 1).toString();
+					String selName=table_doctor.getValueAt(table_doctor.getSelectedRow(), 2).toString();
+					String selPass=table_doctor.getValueAt(table_doctor.getSelectedRow(), 3).toString();
+					
+					
+			boolean control=	bashekim.updateDoctor(selId, selTcno, selPass, selName);
+			if (control) {
+				Helper.showMsg("success");
+			}
+					
+					
+				}
+				
 				
 			}
 		});
