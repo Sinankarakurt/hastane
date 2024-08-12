@@ -251,6 +251,7 @@ public class BashekimGUI extends JFrame {
 		table_doctor = new JTable(doctorModel);
 		scrollPane_doctor.setViewportView(table_doctor);
 		
+		
 		table_doctor.getSelectionModel().addListSelectionListener
 		(new ListSelectionListener(	) 
 		{
@@ -269,6 +270,11 @@ public class BashekimGUI extends JFrame {
 			} 
 		}
 		);
+		
+//------------------------------------------------------
+
+		JPanel w_clinic = new JPanel();
+		w_tabpane.addTab("Poliklinikler", null, w_clinic, null);
 //------------------------------------------------------------------------
 		
 		table_doctor.getModel().addTableModelListener(new TableModelListener()
@@ -326,5 +332,4 @@ public class BashekimGUI extends JFrame {
 		}
 		
 	}
-//----------------------------------------------------	
 }
