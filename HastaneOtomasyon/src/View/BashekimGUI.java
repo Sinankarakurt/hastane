@@ -99,6 +99,17 @@ public class BashekimGUI extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+//---------------------------------------------------------------------------
+		clinicModel=new DefaultTableModel();
+		Object[] colClinic=new Object[2];
+		
+		colClinic[0]="ID";
+		colClinic[1]="Poliklinik";
+		clinicModel.setColumnIdentifiers(colClinic);
+		
+		
+
+//-----------------------------------------------
 		
 		setTitle("Hastane Yönetim Sistemi");
 		setBackground(Color.WHITE);
@@ -288,7 +299,7 @@ public class BashekimGUI extends JFrame {
 		w_scrollClinic.setBounds(10, 11, 233, 362);
 		w_clinic.add(w_scrollClinic);
 		
-		table_clinic = new JTable();
+		table_clinic = new JTable(clinicModel);
 		w_scrollClinic.setViewportView(table_clinic);
 		
 		JLabel lbl_clinicName = new JLabel("Poliklinik Adı");
