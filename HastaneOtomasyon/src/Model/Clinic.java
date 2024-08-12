@@ -77,21 +77,32 @@ public class Clinic
 		st.close();
 		rs.close();
 		con.close();
-		
 	}
-		
-	
-	  
-		
-		
 		return list;
+	}
 		
+//------------------------------------------------
+	public boolean addClinic(String name)
+	{
+		Connection con=conn.connDb();
+		String query="SELECT INTO clinic (name) VALUES(?)";
+		try {
+			st=con.createStatement();
+			preparedStatement=con.prepareStatement(query);
+			preparedStatement.setString(1, name);
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return true;
 	}
 	
 	
-	
-	
-//------------------------------------------------
+
+//-------------------------------------------------------
 	
 
 }
