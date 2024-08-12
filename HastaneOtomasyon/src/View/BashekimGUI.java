@@ -296,8 +296,18 @@ public class BashekimGUI extends JFrame {
 		fld_clinicName.setColumns(10);
 		fld_clinicName.setBounds(247, 46, 157, 29);
 		w_clinic.add(fld_clinicName);
-		
+//-----------------------------------------------------------------		
 		JButton btn_addClinic = new JButton("Ekle");
+		btn_addClinic.addActionListener
+		(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+			}
+		}
+		);
+		
+//--------------------------------------------------------------------		
 		btn_addClinic.setBounds(247, 86, 157, 29);
 		w_clinic.add(btn_addClinic);
 		
