@@ -21,7 +21,7 @@ public class Clinic
 	DBConnection conn=new DBConnection();
 	Statement st=null;
 	ResultSet rs=null;
-	Connection con=conn.connDb();
+	
 	PreparedStatement preparedStatement =null;
 //-------------------------------------------
 	
@@ -56,11 +56,11 @@ public class Clinic
 	
 		ArrayList<Clinic> list=new ArrayList<Clinic>();
 		Clinic obj;
-		
+		Connection con=conn.connDb();
 		try 
 		{
 			st=con.createStatement();
-			rs=st.executeQuery("SELECGT * FROM clinic");
+			rs=st.executeQuery("SELECT * FROM clinic");
 			while(rs.next())
 			{
 				obj=new Clinic();

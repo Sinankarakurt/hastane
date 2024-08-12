@@ -49,6 +49,10 @@ public class BashekimGUI extends JFrame {
 	private JTable table_clinic;
 	private JTextField fld_clinicName;
 //--------------------------------------------------
+	private DefaultTableModel clinicModel=null;
+	private Object[] clinicData=null;
+	
+	//--------------------------------------
 	/**
 	 * Launch the application.
 	 */
