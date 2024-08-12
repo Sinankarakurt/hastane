@@ -108,7 +108,21 @@ public class BashekimGUI extends JFrame {
 		colClinic[0]="ID";
 		colClinic[1]="Poliklinik";
 		clinicModel.setColumnIdentifiers(colClinic);
+//------------------------------------------------
+
+		clinicData=new Object[2];
 		
+		try {
+			for (int i = 0; i < clinic.getClinicList().size(); i++)
+			{
+				clinicData[0]=clinic.getClinicList().get(i).getId();
+				clinicData[1]=clinic.getClinicList().get(i).getName();
+				clinicModel.addRow(clinicData);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 
 //-----------------------------------------------
