@@ -35,6 +35,8 @@ public class BashekimGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel w_pane;
+	//--------------------------------
+	Clinic clinic=new Clinic();
 	
 	// ----------
 	public static Bashekim bashekim=new Bashekim();
