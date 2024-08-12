@@ -46,6 +46,8 @@ public class BashekimGUI extends JFrame {
 	//-----------------------------------------------------------
 	private DefaultTableModel doctorModel=null;
 	private Object [] doctorData=null;
+	private JTable table_clinic;
+	private JTextField fld_clinicName;
 //--------------------------------------------------
 	/**
 	 * Launch the application.
@@ -274,7 +276,34 @@ public class BashekimGUI extends JFrame {
 //------------------------------------------------------
 
 		JPanel w_clinic = new JPanel();
+		w_clinic.setBackground(Color.WHITE);
 		w_tabpane.addTab("Poliklinikler", null, w_clinic, null);
+		w_clinic.setLayout(null);
+		
+		JScrollPane w_scrollClinic = new JScrollPane();
+		w_scrollClinic.setBounds(10, 11, 233, 362);
+		w_clinic.add(w_scrollClinic);
+		
+		table_clinic = new JTable();
+		w_scrollClinic.setViewportView(table_clinic);
+		
+		JLabel lbl_clinicName = new JLabel("Poliklinik Adı");
+		lbl_clinicName.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 14));
+		lbl_clinicName.setBounds(247, 11, 157, 29);
+		w_clinic.add(lbl_clinicName);
+		
+		fld_clinicName = new JTextField();
+		fld_clinicName.setColumns(10);
+		fld_clinicName.setBounds(247, 46, 157, 29);
+		w_clinic.add(fld_clinicName);
+		
+		JButton btn_addClinic = new JButton("Ekle");
+		btn_addClinic.setBounds(247, 86, 157, 29);
+		w_clinic.add(btn_addClinic);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(408, 11, 251, 362);
+		w_clinic.add(scrollPane);
 //------------------------------------------------------------------------
 		
 		table_doctor.getModel().addTableModelListener(new TableModelListener()
