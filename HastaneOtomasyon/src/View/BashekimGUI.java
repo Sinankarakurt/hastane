@@ -334,6 +334,19 @@ public class BashekimGUI extends JFrame {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
+				if (fld_clinicName.getText().length()==0)
+				{
+					Helper.showMsg("fill");
+					
+				} 
+				else
+				{
+					if (clinic.addClinic(fld_clinicName.getText()))
+					{
+						Helper.showMsg("success");
+						fld_clinicName.setText(null);
+					}
+				}
 			}
 		}
 		);
