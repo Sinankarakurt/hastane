@@ -341,9 +341,10 @@ public class BashekimGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) 
 			{
 			int selID=Integer.parseInt(table_clinic.getValueAt(table_clinic.getSelectedRow(), 0).toString());
-			
-				
-				
+		   Clinic selectClinic=clinic.getFetch(selID);
+		   UpdateClinicGUI updateGUI=new UpdateClinicGUI(selectClinic);
+		   updateGUI.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				updateGUI.setVisible(true);			
 			}
 		}
 		);
@@ -363,10 +364,7 @@ public class BashekimGUI extends JFrame {
 				Point point=e.getPoint();
 				int selectedRow=table_clinic.rowAtPoint(point);
 				table_clinic.setRowSelectionInterval(selectedRow, selectedRow);
-				for (int i = 0; i <clinic.getClinicList(); i++)
-				{
-					
-				}
+			
 				
 			}
 		}
