@@ -465,6 +465,19 @@ public class BashekimGUI extends JFrame {
 		
 		JComboBox select_doctor = new JComboBox();
 		select_doctor.setBounds(247, 304, 157, 29);
+	//-------------------------------------------
+		  try
+		  {
+			for (int i = 0; i < bashekim.getDoctorList().size(); i++) 
+			{
+				select_doctor.addItem(bashekim.getDoctorList().get(i).getName());
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		//-----------------------------------------------------
 		w_clinic.add(select_doctor);
 		
 		JButton btn_addWorker = new JButton("Ekle");
