@@ -131,5 +131,34 @@ public class Clinic
 	
 //--------------------------------------------
 	
+	public boolean updateClinic(int id,String name)
+	{
+		String query="UPDATE clinic SET name=? WHERE id=?";
+		boolean key=false;
+		Connection con=conn.connDb();
+		
+		try 
+		{
+			st=con.createStatement();
+			preparedStatement=con.prepareStatement(query);
+			preparedStatement.setString(1, name);
+			preparedStatement.setInt(2, id);
+			preparedStatement.executeUpdate();
+			key=true;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if (key) 
+			return true;
+		else return false;
+	}
+	
+	
+	
+	//------------------------------------------
+	
 
 }
