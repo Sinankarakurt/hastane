@@ -345,6 +345,7 @@ public class BashekimGUI extends JFrame {
 					{
 						Helper.showMsg("success");
 						fld_clinicName.setText(null);
+						updateClinicModel();
 					}
 				}
 			}
@@ -415,4 +416,29 @@ public class BashekimGUI extends JFrame {
 		}
 		
 	}
+//----------------------------------------------------------------------------
+	
+	public void updateClinicModel()
+	{
+		DefaultTableModel clearModel=(DefaultTableModel) table_clinic.getModel();
+		clearModel.setRowCount(0);
+		
+		try 
+		{
+			for (int i = 0; i < clinic.getClinicList().size(); i++)
+			{
+				clinicData[0]=clinic.getClinicList().get(i).getId();
+				clinicData[1]=clinic.getClinicList().get(i).getName();
+				clinicModel.addRow(clinicData);
+			}
+			
+		} catch (Exception e) 
+		{
+			// TODO: handle exception
+		}
+	}
+	
+	//----------------------------------------------
+	
+	
 }
