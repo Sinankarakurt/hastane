@@ -99,10 +99,37 @@ public class Clinic
 		
 		return true;
 	}
-	
-	
 
 //-------------------------------------------------------
+	
+	public boolean deleteClinic(int id)
+	{
+		Connection con=conn.connDb();
+		String query="DELETE FROM clinic WHERE id=?";
+		boolean key=false;
+		
+		try
+		{
+			st=con.createStatement();
+			preparedStatement=con.prepareStatement(query);
+			preparedStatement.setInt(1, id);
+			preparedStatement.executeUpdate();
+			key=true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if (key) 
+			return true;
+			
+		else 
+			return false;
+		
+	}
+
+	
+//--------------------------------------------
 	
 
 }
