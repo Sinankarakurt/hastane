@@ -40,6 +40,7 @@ import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JComboBox;
 
 public class BashekimGUI extends JFrame {
 
@@ -461,6 +462,14 @@ public class BashekimGUI extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(408, 11, 251, 362);
 		w_clinic.add(scrollPane);
+		
+		JComboBox select_doctor = new JComboBox();
+		select_doctor.setBounds(247, 304, 157, 29);
+		w_clinic.add(select_doctor);
+		
+		JButton btn_addWorker = new JButton("Ekle");
+		btn_addWorker.setBounds(247, 344, 157, 29);
+		w_clinic.add(btn_addWorker);
 //------------------------------------------------------------------------
 		
 		table_doctor.getModel().addTableModelListener(new TableModelListener()
@@ -539,8 +548,4 @@ public class BashekimGUI extends JFrame {
 			// TODO: handle exception
 		}
 	}
-	
-	//----------------------------------------------
-	
-	
 }
