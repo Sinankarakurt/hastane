@@ -370,7 +370,36 @@ public class BashekimGUI extends JFrame {
 
 		
 		//---------------------------------------------
+		deleteMenu.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				// TODO Auto-generated method stub
+				if (Helper.confirm("sure")) 
+				{
+					int selID=Integer.parseInt(table_clinic.getValueAt(table_clinic.getSelectedRow(), 0).toString());
+					
+					if (clinic.deleteClinic(selID))
+					{
+						Helper.showMsg("success");		
+						updateClinicModel();
+					}
+					
+					else
+					{
+						Helper.showMsg("error");
+					}
+				}
+				
+			}
+		});
 		
+		
+		
+		
+		//-----------------------------------------------------------
 		
 		table_clinic = new JTable(clinicModel);
 		
