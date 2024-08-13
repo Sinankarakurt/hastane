@@ -329,7 +329,7 @@ public class BashekimGUI extends JFrame {
 		clinicMenu.add(updateMenu);
 		clinicMenu.add(deleteMenu);
 		
-		
+
 		
 		//---------------------------------------------
 		
