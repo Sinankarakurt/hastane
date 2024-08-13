@@ -85,7 +85,7 @@ public class Clinic
 	public boolean addClinic(String name)
 	{
 		Connection con=conn.connDb();
-		String query="SELECT INTO clinic (name) VALUES(?)";
+		String query="INSERT INTO clinic  (name) VALUES(?)";
 		try {
 			st=con.createStatement();
 			preparedStatement=con.prepareStatement(query);
