@@ -22,6 +22,8 @@ import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 
 import java.awt.Font;
+import java.awt.Point;
+
 import javax.swing.JButton;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
@@ -29,6 +31,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JPopupMenu;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.nio.channels.SelectionKey;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
@@ -328,7 +332,21 @@ public class BashekimGUI extends JFrame {
 		JMenuItem deleteMenu=new JMenuItem("sil");
 		clinicMenu.add(updateMenu);
 		clinicMenu.add(deleteMenu);
-		
+	//---------------------------------------------
+		updateMenu.addActionListener
+		(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+			int selID=Integer.parseInt(table_clinic.getValueAt(table_clinic.getSelectedRow(), 0).toString());
+			
+				
+				
+			}
+		}
+		);
 
 		
 		//---------------------------------------------
@@ -337,6 +355,22 @@ public class BashekimGUI extends JFrame {
 		table_clinic = new JTable(clinicModel);
 		
 		table_clinic.setComponentPopupMenu(clinicMenu);
+		table_clinic.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mousePressed(MouseEvent e)
+			{
+				Point point=e.getPoint();
+				int selectedRow=table_clinic.rowAtPoint(point);
+				table_clinic.setRowSelectionInterval(selectedRow, selectedRow);
+				for (int i = 0; i <clinic.getClinicList(); i++)
+				{
+					
+				}
+				
+			}
+		}
+		);
 		
 		w_scrollClinic.setViewportView(table_clinic);
 		
