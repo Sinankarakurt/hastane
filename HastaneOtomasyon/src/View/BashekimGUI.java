@@ -33,6 +33,8 @@ import javax.swing.JPopupMenu;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.nio.channels.SelectionKey;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
@@ -344,7 +346,24 @@ public class BashekimGUI extends JFrame {
 		   Clinic selectClinic=clinic.getFetch(selID);
 		   UpdateClinicGUI updateGUI=new UpdateClinicGUI(selectClinic);
 		   updateGUI.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				updateGUI.setVisible(true);			
+				updateGUI.setVisible(true);		
+				updateGUI.addWindowListener(new WindowAdapter()
+				{
+					@Override
+					public void windowClosed(WindowEvent e)
+					{
+						try 
+						{
+							updateClinicModel();
+							
+						} catch (Exception e2) {
+							// TODO: handle exception
+						}
+						
+					}
+					
+				}
+			);
 			}
 		}
 		);
