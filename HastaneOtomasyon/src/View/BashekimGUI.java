@@ -19,11 +19,15 @@ import Model.*;
 
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
+import javax.swing.JPopupMenu;
+
 import java.awt.event.ActionListener;
 import java.nio.channels.SelectionKey;
 import java.sql.SQLException;
@@ -55,6 +59,9 @@ public class BashekimGUI extends JFrame {
 	private Object[] clinicData=null;
 	
 	//--------------------------------------
+	
+	private JPopupMenu clinicMenu;
+	//-------------------------------------------
 	/**
 	 * Launch the application.
 	 */
@@ -314,8 +321,23 @@ public class BashekimGUI extends JFrame {
 		JScrollPane w_scrollClinic = new JScrollPane();
 		w_scrollClinic.setBounds(10, 11, 233, 362);
 		w_clinic.add(w_scrollClinic);
+//-------------------------------------------------------
+		clinicMenu=new JPopupMenu();
+		
+		JMenuItem updateMenu=new JMenuItem("Güncelle");
+		JMenuItem deleteMenu=new JMenuItem("sil");
+		clinicMenu.add(updateMenu);
+		clinicMenu.add(deleteMenu);
+		
+		
+		
+		//---------------------------------------------
+		
 		
 		table_clinic = new JTable(clinicModel);
+		
+		table_clinic.setComponentPopupMenu(clinicMenu);
+		
 		w_scrollClinic.setViewportView(table_clinic);
 		
 		JLabel lbl_clinicName = new JLabel("Poliklinik Adı");
