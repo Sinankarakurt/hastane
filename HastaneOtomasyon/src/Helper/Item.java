@@ -36,6 +36,15 @@ public class Item
 	}
 	
 	//-----------------------------------------------
+
+	// çekilen verilen başka karakterde dönmesiyle Object sınıfından toString metodu override edilerek  normal şekilde 
+	//isimlerin adı çıkması sağlanmıştır.
+	@Override
+	public String toString()
+	{
+		return this.value;
+	}
+	
 	
 
 }

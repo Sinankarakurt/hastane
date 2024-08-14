@@ -470,13 +470,25 @@ public class BashekimGUI extends JFrame {
 		  {
 			for (int i = 0; i < bashekim.getDoctorList().size(); i++) 
 			{
-				select_doctor.addItem(bashekim.getDoctorList().get(i).getName());
+				//select_doctor.addItem(bashekim.getDoctorList().get(i).getName());
+				
+				select_doctor.addItem(new Item(bashekim.getDoctorList().get(i).getId(),bashekim.getDoctorList().get(i).getName()));
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
+		  //lambda fonksiyonu
+		  
+		  select_doctor.addActionListener(e->
+		  {
+			  JComboBox c=(JComboBox) e.getSource();
+			  Item item=(Item) c.getSelectedItem();
+			  System.out.println(item.getKey()+":"+item.getValue());
+		  }
+				  );
+		  
 		//-----------------------------------------------------
 		w_clinic.add(select_doctor);
 		
