@@ -68,6 +68,7 @@ public class BashekimGUI extends JFrame {
 	//--------------------------------------
 	
 	private JPopupMenu clinicMenu;
+	private JTable table_worker;
 	//-------------------------------------------
 	/**
 	 * Launch the application.
@@ -459,9 +460,12 @@ public class BashekimGUI extends JFrame {
 		btn_addClinic.setBounds(247, 86, 157, 29);
 		w_clinic.add(btn_addClinic);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(408, 11, 251, 362);
-		w_clinic.add(scrollPane);
+		JScrollPane w_scrollWorker = new JScrollPane();
+		w_scrollWorker.setBounds(408, 11, 251, 362);
+		w_clinic.add(w_scrollWorker);
+		
+		table_worker = new JTable();
+		w_scrollWorker.setViewportView(table_worker);
 		
 		JComboBox select_doctor = new JComboBox();
 		select_doctor.setBounds(247, 304, 157, 29);
@@ -531,6 +535,19 @@ public class BashekimGUI extends JFrame {
 		);
 		btn_addWorker.setBounds(247, 344, 157, 29);
 		w_clinic.add(btn_addWorker);
+		
+		JLabel lbl_clinicName_1 = new JLabel("Poliklinik Adı");
+		lbl_clinicName_1.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 14));
+		lbl_clinicName_1.setBounds(247, 161, 157, 29);
+		w_clinic.add(lbl_clinicName_1);
+		
+		JButton btn_workerSelect = new JButton("Seç");
+		btn_workerSelect.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btn_workerSelect.setBounds(247, 201, 157, 29);
+		w_clinic.add(btn_workerSelect);
 //------------------------------------------------------------------------
 		
 		table_doctor.getModel().addTableModelListener(new TableModelListener()
