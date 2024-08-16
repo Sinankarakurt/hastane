@@ -486,7 +486,7 @@ public class BashekimGUI extends JFrame {
 			  JComboBox c=(JComboBox) e.getSource();
 			  Item item=(Item) c.getSelectedItem();
 			  
-			 // System.out.println(item.getKey()+"."+item.getValue());
+			  System.out.println(item.getKey()+"."+item.getValue());
 			 
 		  }
 				  );
@@ -500,7 +500,31 @@ public class BashekimGUI extends JFrame {
 		(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
+			int selRow=table_clinic.getSelectedRow();
+			if (selRow>=0)
+			{
+				String selClinic=table_clinic.getModel().getValueAt(selRow, 0).toString();
+				int selClinicID=Integer.parseInt(selClinic);
+				Item doctorItem=(Item) select_doctor.getSelectedItem();
+			
+				try {
+					boolean control=bashekim.addWorker(doctorItem.getKey(), selClinicID);
+					if (control) {
+						Helper.showMsg("success");
+					} else {
+						Helper.showMsg("error");
+					}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
+				
+			} else 
+				
+			{
+				Helper.showMsg("lütfen bir poliklinik giriniz");
+			}
 	       
 			}
 		}

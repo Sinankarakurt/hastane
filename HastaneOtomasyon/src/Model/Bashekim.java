@@ -140,7 +140,7 @@ public class Bashekim extends User
 	public boolean addWorker(int user_id,int clinic_id) throws SQLException
 	{
 		
-		String query="INSERT INTO worker (user_id,clinic_id) VALUES(?,?";
+		String query="INSERT INTO worker (user_id,clinic_id) VALUES(?,?)";
 				
 		boolean key=false;
 		int count=0;
@@ -148,7 +148,7 @@ public class Bashekim extends User
 		
 		try {
 			st=con.createStatement();
-			rs=st.executeQuery("SELECT * FROM clinic_id="+clinic_id+" AND user_id="+user_id);
+			rs=st.executeQuery("SELECT * FROM worker WHERE clinic_id="+clinic_id+" AND user_id="+user_id);
 			while (rs.next())
 			{
 				count++;
