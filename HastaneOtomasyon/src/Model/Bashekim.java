@@ -55,7 +55,7 @@ public class Bashekim extends User
 	}
 //----------------------------------------------------------
 
-	public ArrayList<User> getClinicDoctorList(int clinic_id)//throws SQLException
+	public ArrayList<User> getClinicDoctorList(int clinic_id)throws SQLException
 	
 	{
 		ArrayList<User> list=new ArrayList<User>();
