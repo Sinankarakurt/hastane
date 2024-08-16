@@ -485,7 +485,9 @@ public class BashekimGUI extends JFrame {
 		  {
 			  JComboBox c=(JComboBox) e.getSource();
 			  Item item=(Item) c.getSelectedItem();
-			  System.out.println(item.getKey()+":"+item.getValue());
+			  
+			 // System.out.println(item.getKey()+"."+item.getValue());
+			 
 		  }
 				  );
 		  
@@ -493,6 +495,16 @@ public class BashekimGUI extends JFrame {
 		w_clinic.add(select_doctor);
 		
 		JButton btn_addWorker = new JButton("Ekle");
+		btn_addWorker.addActionListener
+		
+		(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				
+	       
+			}
+		}
+		);
 		btn_addWorker.setBounds(247, 344, 157, 29);
 		w_clinic.add(btn_addWorker);
 //------------------------------------------------------------------------

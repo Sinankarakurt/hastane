@@ -155,10 +155,32 @@ public class Clinic
 			return true;
 		else return false;
 	}
-	
-	
-	
+		
 	//------------------------------------------
 	
+	public Clinic getFetch(int id)
+	{
+		Connection con=conn.connDb();
+		Clinic c=new Clinic();
+		try {
+			st=con.createStatement();
+			rs=st.executeQuery("SELECT * FROM clinic WHERE id="+id);
+			while (rs.next())
+			{
+				c.setId(rs.getInt("id"));
+				c.setName(rs.getString("name"));
+				break;
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+	return c;
+		
+	}
+	
+	//-------------------------------------------------------------------
 
 }
