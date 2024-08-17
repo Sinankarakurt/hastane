@@ -67,7 +67,7 @@ public class Bashekim extends User
 			
 			while (rs.next()) 
 			{
-				obj=new User(rs.getInt("id"),rs.getString("tcno"),rs.getString("name"),rs.getString("password"),rs.getString("type"));
+				obj=new User(rs.getInt("u.id"),rs.getString("u.tcno"),rs.getString("u.name"),rs.getString("u.password"),rs.getString("u.type"));
 				list.add(obj);
 			}
 			
