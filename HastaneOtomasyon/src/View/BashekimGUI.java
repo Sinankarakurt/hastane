@@ -142,6 +142,18 @@ public class BashekimGUI extends JFrame {
 
 //-----------------------------------------------
 		
+//----------------workerModel---------------------------
+		
+		DefaultTableModel workerModel=new DefaultTableModel();
+		Object [] colWorker=new Object[2];
+		colWorker[0]="ID";
+		colWorker[1]="Ad Soyad";
+		workerModel.setColumnIdentifiers(colWorker);
+		
+		
+
+//-----------------------------------------------------------------
+		
 		setTitle("Hastane Yönetim Sistemi");
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -464,7 +476,7 @@ public class BashekimGUI extends JFrame {
 		w_scrollWorker.setBounds(408, 11, 251, 362);
 		w_clinic.add(w_scrollWorker);
 		
-		table_worker = new JTable();
+		table_worker = new JTable(workerModel);
 		w_scrollWorker.setViewportView(table_worker);
 		
 		JComboBox select_doctor = new JComboBox();
