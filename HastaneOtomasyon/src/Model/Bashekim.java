@@ -60,8 +60,9 @@ public class Bashekim extends User
 	{
 		ArrayList<User> list=new ArrayList<User>();
 		User obj;
-		String query="SELECT u.id,u.tcno,u.type,u.name FROM worker w LEFT JOIN user u ON w.user_id=u.id WHERE clinic_id="+clinic_id;
-		try {
+		Connection con=conn.connDb();
+		String query="SELECT u.id,u.tcno,u.type,u.name,u.password FROM worker w LEFT JOIN user u ON w.user_id=u.id WHERE clinic_id="+clinic_id;
+		
 			st=con.createStatement();
 			rs=st.executeQuery(query);
 			
@@ -71,10 +72,6 @@ public class Bashekim extends User
 				list.add(obj);
 			}
 			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	
 		return list;
 	}

@@ -69,6 +69,7 @@ public class BashekimGUI extends JFrame {
 	
 	private JPopupMenu clinicMenu;
 	private JTable table_worker;
+	protected int i;
 	//-------------------------------------------
 	/**
 	 * Launch the application.
@@ -140,7 +141,7 @@ public class BashekimGUI extends JFrame {
 		}
 		
 
-//-----------------------------------------------
+
 		
 //----------------workerModel---------------------------
 		
@@ -150,7 +151,9 @@ public class BashekimGUI extends JFrame {
 		colWorker[1]="Ad Soyad";
 		workerModel.setColumnIdentifiers(colWorker);
 		
+		//-----------------------------------------------
 		
+				Object [] workerData=new Object[2];	
 
 //-----------------------------------------------------------------
 		
@@ -476,24 +479,25 @@ public class BashekimGUI extends JFrame {
 		w_scrollWorker.setBounds(408, 11, 251, 362);
 		w_clinic.add(w_scrollWorker);
 		
-		table_worker = new JTable(workerModel);
+		table_worker = new JTable();
 		w_scrollWorker.setViewportView(table_worker);
 		
 		JComboBox select_doctor = new JComboBox();
 		select_doctor.setBounds(247, 304, 157, 29);
 	//-------------------------------------------
-		  try
-		  {
-			for (int i = 0; i < bashekim.getDoctorList().size(); i++) 
-			{
-				//select_doctor.addItem(bashekim.getDoctorList().get(i).getName());
-				
-				select_doctor.addItem(new Item(bashekim.getDoctorList().get(i).getId(),bashekim.getDoctorList().get(i).getName()));
+		 
+			try {
+				for (int i = 0; i < bashekim.getDoctorList().size(); i++) 
+				{
+					//select_doctor.addItem(bashekim.getDoctorList().get(i).getName());
+					
+					select_doctor.addItem(new Item(bashekim.getDoctorList().get(i).getId(),bashekim.getDoctorList().get(i).getName()));
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	
 		
 		  //lambda fonksiyonu
 		  
@@ -554,10 +558,45 @@ public class BashekimGUI extends JFrame {
 		w_clinic.add(lbl_clinicName_1);
 		
 		JButton btn_workerSelect = new JButton("Seç");
-		btn_workerSelect.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btn_workerSelect.addActionListener
+		(new ActionListener()
+		{
+		
+
+			public void actionPerformed(ActionEvent e)
+			{
+				int selRow=table_clinic.getSelectedRow();
+				if (selRow>=0)
+				{
+					String selClinic=table_clinic.getModel().getValueAt(selRow, 0).toString();
+					int selClinicID=Integer.parseInt(selClinic);
+					DefaultTableModel clearModel=(DefaultTableModel) table_worker.getModel();
+					clearModel.setRowCount(0);
+					
+					try {
+						for (int i = 0; i < bashekim.getClinicDoctorList(selClinicID).size(); i++)
+						{
+							workerData[0]=bashekim.getClinicDoctorList(selClinicID).get(i).getId();
+							workerData[1]=bashekim.getClinicDoctorList(selClinicID).get(i).getName();							
+							
+							workerModel.addRow(workerData);
+						}
+						{
+							
+						}
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					table_worker.setModel(workerModel);
+				} else 
+				{
+					Helper.showMsg("Lütfen bir kLinik Seçiniz.");
+				}
 			}
-		});
+		}
+		);
 		btn_workerSelect.setBounds(247, 201, 157, 29);
 		w_clinic.add(btn_workerSelect);
 //------------------------------------------------------------------------
