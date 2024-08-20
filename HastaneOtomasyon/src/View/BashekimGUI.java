@@ -531,6 +531,24 @@ public class BashekimGUI extends JFrame {
 					boolean control=bashekim.addWorker(doctorItem.getKey(), selClinicID);
 					if (control) {
 						Helper.showMsg("success");
+						
+						
+						DefaultTableModel clearModel=(DefaultTableModel) table_worker.getModel();
+						clearModel.setRowCount(0);
+						
+						
+							for (int i = 0; i < bashekim.getClinicDoctorList(selClinicID).size(); i++)
+							{
+								workerData[0]=bashekim.getClinicDoctorList(selClinicID).get(i).getId();
+								workerData[1]=bashekim.getClinicDoctorList(selClinicID).get(i).getName();							
+								
+								workerModel.addRow(workerData);
+							}
+							{
+								
+							}
+					
+						table_worker.setModel(workerModel);
 					} else {
 						Helper.showMsg("error");
 					}
@@ -570,6 +588,7 @@ public class BashekimGUI extends JFrame {
 				{
 					String selClinic=table_clinic.getModel().getValueAt(selRow, 0).toString();
 					int selClinicID=Integer.parseInt(selClinic);
+					
 					DefaultTableModel clearModel=(DefaultTableModel) table_worker.getModel();
 					clearModel.setRowCount(0);
 					
