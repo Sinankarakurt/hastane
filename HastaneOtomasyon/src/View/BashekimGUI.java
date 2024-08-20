@@ -69,7 +69,7 @@ public class BashekimGUI extends JFrame {
 	
 	private JPopupMenu clinicMenu;
 	private JTable table_worker;
-	protected int i;
+
 	//-------------------------------------------
 	/**
 	 * Launch the application.
