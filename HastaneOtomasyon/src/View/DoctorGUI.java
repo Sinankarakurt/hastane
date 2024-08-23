@@ -14,6 +14,8 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTabbedPane;
 import com.toedter.calendar.JDateChooser;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class DoctorGUI extends JFrame
 {
@@ -76,8 +78,13 @@ public class DoctorGUI extends JFrame
 		w_tab.addTab("Çalışma Saatleri", null, w_hour, null);
 		w_hour.setLayout(null);
 		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(73, 32, 145, 20);
-		w_hour.add(dateChooser);
+		JDateChooser select_date = new JDateChooser();
+		select_date.setBounds(73, 32, 145, 20);
+		w_hour.add(select_date);
+		
+		JComboBox select_time = new JComboBox();
+		select_time.setModel(new DefaultComboBoxModel(new String[] {"10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:30", "14:00", "14:30", "15:00", "15:30"}));
+		select_time.setBounds(228, 32, 69, 22);
+		w_hour.add(select_time);
 	}
 }
