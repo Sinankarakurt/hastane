@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTabbedPane;
+import com.toedter.calendar.JDateChooser;
 
 public class DoctorGUI extends JFrame
 {
@@ -73,5 +74,10 @@ public class DoctorGUI extends JFrame
 		
 		JPanel w_hour = new JPanel();
 		w_tab.addTab("Çalışma Saatleri", null, w_hour, null);
+		w_hour.setLayout(null);
+		
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setBounds(73, 32, 145, 20);
+		w_hour.add(dateChooser);
 	}
 }
