@@ -14,8 +14,16 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTabbedPane;
 import com.toedter.calendar.JDateChooser;
+
+import Helper.Helper;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.awt.event.ActionEvent;
 
 public class DoctorGUI extends JFrame
 {
@@ -86,5 +94,47 @@ public class DoctorGUI extends JFrame
 		select_time.setModel(new DefaultComboBoxModel(new String[] {"10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:30", "14:00", "14:30", "15:00", "15:30"}));
 		select_time.setBounds(228, 32, 69, 22);
 		w_hour.add(select_time);
+		
+		JButton btn_addWhour = new JButton("Ekle");
+		btn_addWhour.addActionListener
+		
+		(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+				String date=sdf.format(select_date.getDate());
+				
+				if (date.length()==0) 
+				{
+				Helper.showMsg("Lütfen geçerli bir tarih giriniz");
+				}
+				
+				String time= " "+select_time.getSelectedItem().toString()+":00";
+				String selectDate=date+time;
+				try {
+					boolean control=doctor.addWhour(doctor.getId(),doctor.getName(), selectDate);
+					if (control)
+					{
+						Helper.showMsg("success");
+					} else 
+					{
+						Helper.showMsg("error");
+					}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+			}
+		}
+		);
+		btn_addWhour.setBounds(305, 29, 74, 23);
+		w_hour.add(btn_addWhour);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 63, 673, 295);
+		w_hour.add(scrollPane);
 	}
 }
