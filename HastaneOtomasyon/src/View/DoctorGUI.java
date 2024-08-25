@@ -103,7 +103,17 @@ public class DoctorGUI extends JFrame
 			public void actionPerformed(ActionEvent e) 
 			{
 				SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-				String date=sdf.format(select_date.getDate());
+				
+				String date= "";
+				
+				try
+				{
+				 date=sdf.format(select_date.getDate());
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+				
+			
 				
 				if (date.length()==0) 
 				{
@@ -133,8 +143,8 @@ public class DoctorGUI extends JFrame
 		btn_addWhour.setBounds(305, 29, 74, 23);
 		w_hour.add(btn_addWhour);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 63, 673, 295);
-		w_hour.add(scrollPane);
+		JScrollPane w_scrollWhour = new JScrollPane();
+		w_scrollWhour.setBounds(10, 63, 673, 295);
+		w_hour.add(w_scrollWhour);
 	}
 }
