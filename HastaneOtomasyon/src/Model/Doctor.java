@@ -107,4 +107,30 @@ public class Doctor extends User
 		return list;
 	}
 	
+	//-----------------------------------------------------------
+	
+	public boolean deleteWhour(int id) throws SQLException
+	{
+		String query="DELETE  FROM whour WHERE id=?";
+		boolean key=false;
+		try 
+		{
+			preparedStatement=con.prepareStatement(query);
+			preparedStatement.setInt(1, id);
+			preparedStatement.executeUpdate();
+			key=true;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (key) 
+			return true;
+		else 
+			return false;
+	
+		}
+	
+	
+	
 }
