@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import Model.Doctor;
 
@@ -24,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
 
 public class DoctorGUI extends JFrame
 {
@@ -31,6 +33,10 @@ public class DoctorGUI extends JFrame
 	private static final long serialVersionUID = 1L;
 	private JPanel w_pane;
 	private static Doctor doctor=new Doctor();
+	private JTable table_whour;
+	private DefaultTableModel whourModel;
+	private Object[] whourData=null;
+	
 
 	/**
 	 * Launch the application.
@@ -57,6 +63,16 @@ public class DoctorGUI extends JFrame
 	 */
 	public DoctorGUI(Doctor doctor) 
 	{
+		
+		whourModel=new DefaultTableModel();
+		Object [] colWhour=new Object[2];
+		colWhour[0]="ID";
+		colWhour[1]="Tarih";
+		whourModel.setColumnIdentifiers(colWhour);
+		whourData=new Object[2];
+		
+		
+		
 		setResizable(false);
 		setTitle("Hastane Yönetim Sistemi");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -146,5 +162,8 @@ public class DoctorGUI extends JFrame
 		JScrollPane w_scrollWhour = new JScrollPane();
 		w_scrollWhour.setBounds(10, 63, 673, 295);
 		w_hour.add(w_scrollWhour);
+		
+		table_whour = new JTable();
+		w_scrollWhour.setViewportView(table_whour);
 	}
 }
