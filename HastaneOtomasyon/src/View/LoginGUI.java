@@ -174,20 +174,37 @@ public class LoginGUI extends JFrame
 					{
 						if (fld_doctorTc.getText().equals(rs.getString("tcno"))&& pfld_doctorPass.getText().equals(rs.getString("password"))) 
 						{
-							Bashekim bhekim=new Bashekim();
+							if (rs.getString("type").equals("bashekim")) 
+							{
+								Bashekim bhekim=new Bashekim();
+								bhekim.setId(rs.getInt("id"));
+								bhekim.setTcno(rs.getString("tcno"));
+								bhekim.setPass(rs.getString("password"));
+								bhekim.setName(rs.getString("name"));
+								bhekim.setType(rs.getString("type"));
+								
+								BashekimGUI bGUI=new BashekimGUI(bhekim);
+								bGUI.setVisible(true);
+								dispose();			
+								
+							}
 							
-							bhekim.setId(rs.getInt("id"));
-							bhekim.setTcno(rs.getString("tcno"));
-							bhekim.setPass(rs.getString("password"));
-							bhekim.setName(rs.getString("name"));
-							bhekim.setType(rs.getString("type"));
+							if (rs.getString("type").equals("doktor"))
+							{
+								Doctor doctor=new Doctor();
+								doctor.setId(rs.getInt("id"));
+								doctor.setPass(rs.getString("password"));
+								doctor.setTcno(rs.getString("tcno"));
+								doctor.setName(rs.getString("name"));
+								doctor.setType(rs.getString("type"));
+								DoctorGUI dGUI=new DoctorGUI(doctor);
+								dGUI.setVisible(true);
+								dispose();
+							}
 							
-							BashekimGUI bGUI=new BashekimGUI(bhekim);
-							bGUI.setVisible(true);
-							dispose();							
-						} else {
-
-						}
+							
+											
+						} 
 						
 					}
 					
