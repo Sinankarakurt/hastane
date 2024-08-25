@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class Doctor extends User
 {
@@ -69,6 +70,41 @@ public class Doctor extends User
 		
 		
 	}
+//-------------------------------------------------------------------------------
 
+	public ArrayList<Whour> getWhourList(int doctor_id)//throws SQLException
+	
+	{
+		ArrayList<Whour> list=new ArrayList<Whour>();
+		Whour obj;
+		Connection con=conn.connDb();
+		String query="SELECT * FROM whour WHERE status='a' AND doctor_id="+doctor_id;
+		
+			try {
+				st=con.createStatement();
+				rs=st.executeQuery(query);
+				while (rs.next()) 
+				{
+					obj=new Whour();
+					obj.setId(rs.getInt("id"));
+					obj.setDoctor_id(rs.getInt("doctor_id"));
+					obj.setDoctor_name(rs.getString("doctor_name"));
+					obj.setStatus(rs.getString("status"));
+					obj.setWdate(rs.getString("wdate"));
+					list.add(obj);
+					
+					
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		
+			
+	
+		return list;
+	}
 	
 }

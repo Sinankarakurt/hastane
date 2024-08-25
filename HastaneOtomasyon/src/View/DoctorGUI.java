@@ -71,6 +71,19 @@ public class DoctorGUI extends JFrame
 		whourModel.setColumnIdentifiers(colWhour);
 		whourData=new Object[2];
 		
+		try 
+		{
+			for (int i = 0; i < doctor.getWhourList(doctor.getId()).get(i).getId(); i++)
+			{
+				whourData[0]=doctor.getWhourList(doctor.getId()).get(i).getId();
+				whourData[1]=doctor.getWhourList(doctor.getId()).get(i).getWdate();
+				whourModel.addRow(whourData);
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	
 		
 		
 		setResizable(false);
@@ -163,7 +176,7 @@ public class DoctorGUI extends JFrame
 		w_scrollWhour.setBounds(10, 63, 673, 295);
 		w_hour.add(w_scrollWhour);
 		
-		table_whour = new JTable();
+		table_whour = new JTable(whourModel);
 		w_scrollWhour.setViewportView(table_whour);
 	}
 }

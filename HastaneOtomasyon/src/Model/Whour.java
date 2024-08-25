@@ -26,6 +26,8 @@ public class Whour
 		this.wdate = wdate;
 		this.status = status;
 	}
+	//-----------------------
+	public Whour() {}
 //---------------------------------------------------------------------
 	public int getId() {
 		return id;
