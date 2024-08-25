@@ -156,6 +156,7 @@ public class DoctorGUI extends JFrame
 					if (control)
 					{
 						Helper.showMsg("success");
+						updateWhourModel(doctor);
 					} else 
 					{
 						Helper.showMsg("error");
@@ -178,5 +179,25 @@ public class DoctorGUI extends JFrame
 		
 		table_whour = new JTable(whourModel);
 		w_scrollWhour.setViewportView(table_whour);
+	}
+	
+	public void updateWhourModel(Doctor doctor)
+	{
+		DefaultTableModel clearModel=(DefaultTableModel) table_whour.getModel();
+		clearModel.setRowCount(0);
+		try 
+		{
+			for (int i = 0; i < doctor.getWhourList(doctor.getId()).get(i).getId(); i++)
+			{
+				whourData[0]=doctor.getWhourList(doctor.getId()).get(i).getId();
+				whourData[1]=doctor.getWhourList(doctor.getId()).get(i).getWdate();
+				whourModel.addRow(whourData);
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	
+		
 	}
 }
