@@ -179,6 +179,42 @@ public class DoctorGUI extends JFrame
 		
 		table_whour = new JTable(whourModel);
 		w_scrollWhour.setViewportView(table_whour);
+		
+		JButton btn_deleteWhour = new JButton("Sil");
+		btn_deleteWhour.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				int selRow=table_whour.getSelectedRow();
+				if (selRow>0)
+				{
+					String selectRow=table_whour.getModel().getValueAt(selRow, 0).toString();
+					int selID=Integer.parseInt(selectRow);
+					boolean control;
+					try {
+						control=doctor.deleteWhour(selID);
+						if (control) 
+						{
+							Helper.showMsg("success");
+							updateWhourModel(doctor);
+						}
+						
+						else {
+							Helper.showMsg("error");
+						}
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				else
+				{
+					Helper.showMsg("Lütfen bir tarih seçiniz");
+				}
+			}
+		});
+		btn_deleteWhour.setBounds(573, 32, 74, 23);
+		w_hour.add(btn_deleteWhour);
 	}
 	
 	public void updateWhourModel(Doctor doctor)
