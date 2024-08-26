@@ -11,6 +11,10 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.awt.event.ActionEvent;
+import Model.*;
 
 public class RegisterGUI extends JFrame {
 
@@ -20,6 +24,8 @@ public class RegisterGUI extends JFrame {
 	private JTextField fld_hastaTcno;
 	private JPasswordField pfld_passHasta;
 	private JButton btrn_backto;
+	private static Hasta hasta=new Hasta();
+	
 
 	/**
 	 * Launch the application.
@@ -28,7 +34,7 @@ public class RegisterGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RegisterGUI frame = new RegisterGUI();
+					RegisterGUI frame = new RegisterGUI(hasta);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +46,7 @@ public class RegisterGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public RegisterGUI() {
+	public RegisterGUI(Hasta hasta) {
 		setTitle("Hastane Yönetim Sistemi");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,6 +88,17 @@ public class RegisterGUI extends JFrame {
 		w_pane.add(pfld_passHasta);
 		
 		JButton btn_registerHasta = new JButton("Kayıt Ol");
+		btn_registerHasta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				try {
+					hasta.register("hatc1", "hpw1", "h Can");
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btn_registerHasta.setBounds(42, 236, 186, 29);
 		w_pane.add(btn_registerHasta);
 		
