@@ -57,8 +57,9 @@ public class Hasta extends User
 					  preparedStatement.setString(3, name);
 					  preparedStatement.setString(4,"hasta");
 					  preparedStatement.executeUpdate();
+					  key=1;
 			}
-			key=1;
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

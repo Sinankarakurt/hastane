@@ -35,6 +35,9 @@ public class Helper
 			msg=str;
 			break;
 //---------------------------------
+		case "error":
+			msg="Bir hata gerçekleşti";
+			break;
 		}
 		
 		
