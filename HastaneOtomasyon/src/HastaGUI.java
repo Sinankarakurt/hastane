@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import Helper.Helper;
 import Helper.Item;
 import Model.Clinic;
 import Model.Hasta;
@@ -74,7 +75,8 @@ public class HastaGUI extends JFrame {
 		colWhour[0]="ID";
 		colWhour[1]="Tarih";
 		whourModel.setColumnIdentifiers(colWhour);
-		doctorData=new Object[2];
+		whourData=new Object[2];
+//---------------------------------------------------------------------------------------
 		
 		
 		
@@ -158,11 +160,18 @@ public class HastaGUI extends JFrame {
 							doctorData[1]=clinic.getClinicDoctorList(item.getKey()).get(i).getName();
 							doctorModel.addRow(doctorData);
 						}
+						
+						
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					
+				}
+				else
+				{
+					DefaultTableModel clearModel=(DefaultTableModel) table_doctor.getModel();
+					clearModel.setRowCount(0);
 				}
 				
 			}
@@ -176,6 +185,35 @@ public class HastaGUI extends JFrame {
 		w_appointment.add(lbl_seletctDoctor);
 		
 		JButton btn_selectDoctor = new JButton("Seç");
+		btn_selectDoctor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				int row=table_doctor.getSelectedRow();
+				if (row>0)
+				{
+					String value=table_doctor.getModel().getValueAt(row, 0).toString();
+					int id=Integer.parseInt(value);
+					DefaultTableModel clearModel=(DefaultTableModel) table_whour.getModel();
+					clearModel.setRowCount(0);
+					
+					try {
+						for (int i = 0; i < whour.getWhourList(id).size(); i++)
+						{
+							whourData[0]=whour.getWhourList(id).get(i).getId();
+							whourData[1]=whour.getWhourList(id).get(i).getWdate();
+							whourModel.addRow(whourData);
+						}
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					table_whour.setModel(whourModel);
+				}
+				else {
+					Helper.showMsg("Lüften bir doktor seçiniz");
+				}
+			}
+		});
 		btn_selectDoctor.setBounds(284, 160, 146, 29);
 		w_appointment.add(btn_selectDoctor);
 		
@@ -189,5 +227,6 @@ public class HastaGUI extends JFrame {
 		
 		table_whour = new JTable(whourModel);
 		scroll_whour.setViewportView(table_whour);
+		table_whour.getColumnModel().getColumn(0).setPreferredWidth(5);
 	}
 }
