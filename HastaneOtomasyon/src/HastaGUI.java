@@ -139,8 +139,16 @@ public class HastaGUI extends JFrame {
 					DefaultTableModel clearModel=(DefaultTableModel) table_doctor.getModel();
 					clearModel.setRowCount(0);
 			
-					for (int i = 0; i < colDoctor.length; i++) {
-						
+					try {
+						for (int i = 0; i < clinic.getClinicDoctorList(item.getKey()).size(); i++) 
+						{
+							doctorData[0]=clinic.getClinicDoctorList(item.getKey()).get(i).getId();
+							doctorData[1]=clinic.getClinicDoctorList(item.getKey()).get(i).getName();
+							doctorModel.addRow(doctorData);
+						}
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 					
 				}
