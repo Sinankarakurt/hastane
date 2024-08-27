@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import Helper.Item;
 import Model.Clinic;
@@ -19,6 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JTabbedPane;
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
+import javax.swing.JTable;
 
 public class HastaGUI extends JFrame {
 
@@ -26,6 +28,9 @@ public class HastaGUI extends JFrame {
 	private JPanel w_pane;
 	private static Hasta hasta=new Hasta();
 	private Clinic clinic=new Clinic();
+	private JTable table_doctor;
+	private DefaultTableModel doctorModel;
+	private Object [] doctorData;
 
 	/**
 	 * Launch the application.
@@ -47,7 +52,21 @@ public class HastaGUI extends JFrame {
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
-	public HastaGUI(Hasta hasta) throws SQLException {
+	public HastaGUI(Hasta hasta) throws SQLException
+	{
+		
+		doctorModel=new DefaultTableModel();
+		Object [] colDoctor =new Object [2];
+		colDoctor [0]="ID";
+		colDoctor[1]="Adı Soyadı";
+		doctorModel.setColumnIdentifiers(colDoctor);
+//-------------------------------------------------------
+		doctorData= new Object[2];
+		
+		
+		
+		
+		
 		setResizable(false);
 		setTitle("Hastane Yönetim Sistemi");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,9 +97,12 @@ public class HastaGUI extends JFrame {
 		w_tab.addTab("Randevu Sistemi", null, w_appointment, null);
 		w_appointment.setLayout(null);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 42, 264, 300);
-		w_appointment.add(scrollPane);
+		JScrollPane scrollDoctor = new JScrollPane();
+		scrollDoctor.setBounds(10, 42, 264, 300);
+		w_appointment.add(scrollDoctor);
+		
+		table_doctor = new JTable(doctorModel);
+		scrollDoctor.setViewportView(table_doctor);
 		
 		JLabel lbl_doctorListesi = new JLabel("Doktor Listesi");
 		lbl_doctorListesi.setBounds(26, 17, 113, 24);
@@ -112,7 +134,14 @@ public class HastaGUI extends JFrame {
 				{
 					JComboBox c=(JComboBox) e.getSource();
 					Item item= (Item) c.getSelectedItem();
-					System.out.println(item.getKey()+"--"+item.getValue());
+					
+		
+					DefaultTableModel clearModel=(DefaultTableModel) table_doctor.getModel();
+					clearModel.setRowCount(0);
+			
+					for (int i = 0; i < colDoctor.length; i++) {
+						
+					}
 					
 				}
 				
