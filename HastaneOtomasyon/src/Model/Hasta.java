@@ -45,6 +45,7 @@ public class Hasta extends User
 			while (rs.next()) 
 			{
 				duplicate=true;
+				Helper.showMsg("Bu tc numarasına ait bir kayıt bulunmaktadır.");
 				break;
 			}
 			
