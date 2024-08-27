@@ -11,6 +11,8 @@ import Model.Hasta;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
@@ -98,6 +100,24 @@ public class HastaGUI extends JFrame {
 			cbx_selectClinic.addItem(new Item(clinic.getClinicList().get(i).getId(),clinic.getClinicList().get(i).getName()));
 		}
 
+		cbx_selectClinic.addActionListener(new ActionListener() 
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				// TODO Auto-generated method stub
+				
+				if (cbx_selectClinic.getSelectedIndex()!=0) 
+				{
+					JComboBox c=(JComboBox) e.getSource();
+					Item item= (Item) c.getSelectedItem();
+					System.out.println(item.getKey()+"--"+item.getValue());
+					
+				}
+				
+			}
+		});
 		
 		w_appointment.add(cbx_selectClinic);
 	}
