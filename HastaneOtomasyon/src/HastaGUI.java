@@ -91,6 +91,8 @@ public class HastaGUI extends JFrame {
 		JComboBox cbx_selectClinic = new JComboBox();
 		cbx_selectClinic.setBounds(281, 68, 133, 29);
 		
+		cbx_selectClinic.addItem("---Poliklinik Seç----");
+		
 		for (int i = 0; i < clinic.getClinicList().size(); i++) 
 		{
 			cbx_selectClinic.addItem(new Item(clinic.getClinicList().get(i).getId(),clinic.getClinicList().get(i).getName()));
