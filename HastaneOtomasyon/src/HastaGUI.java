@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import Helper.Item;
 import Model.Clinic;
 import Model.Hasta;
+import Model.Whour;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -31,6 +32,11 @@ public class HastaGUI extends JFrame {
 	private JTable table_doctor;
 	private DefaultTableModel doctorModel;
 	private Object [] doctorData;
+	private JTable table_whour;
+	private Whour  whour=new Whour();
+	private DefaultTableModel whourModel;
+	private Object[] whourData=null;
+	
 
 	/**
 	 * Launch the application.
@@ -62,7 +68,13 @@ public class HastaGUI extends JFrame {
 		doctorModel.setColumnIdentifiers(colDoctor);
 //-------------------------------------------------------
 		doctorData= new Object[2];
-		
+//-------------------------------------------------------
+		whourModel=new DefaultTableModel();
+		Object [] colWhour=new Object[2];
+		colWhour[0]="ID";
+		colWhour[1]="Tarih";
+		whourModel.setColumnIdentifiers(colWhour);
+		doctorData=new Object[2];
 		
 		
 		
@@ -113,7 +125,7 @@ public class HastaGUI extends JFrame {
 		w_appointment.add(lbl_policlinic);
 		
 		JComboBox cbx_selectClinic = new JComboBox();
-		cbx_selectClinic.setBounds(281, 68, 133, 29);
+		cbx_selectClinic.setBounds(281, 68, 149, 29);
 		
 		cbx_selectClinic.addItem("---Poliklinik Seç----");
 		
@@ -157,5 +169,25 @@ public class HastaGUI extends JFrame {
 		});
 		
 		w_appointment.add(cbx_selectClinic);
+		
+		JLabel lbl_seletctDoctor = new JLabel("Doktor Seç");
+		lbl_seletctDoctor.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 14));
+		lbl_seletctDoctor.setBounds(284, 120, 146, 29);
+		w_appointment.add(lbl_seletctDoctor);
+		
+		JButton btn_selectDoctor = new JButton("Seç");
+		btn_selectDoctor.setBounds(284, 160, 146, 29);
+		w_appointment.add(btn_selectDoctor);
+		
+		JLabel lbl_whour = new JLabel("Çalişma Saatleri");
+		lbl_whour.setBounds(440, 17, 113, 24);
+		w_appointment.add(lbl_whour);
+		
+		JScrollPane scroll_whour = new JScrollPane();
+		scroll_whour.setBounds(440, 42, 264, 300);
+		w_appointment.add(scroll_whour);
+		
+		table_whour = new JTable(whourModel);
+		scroll_whour.setViewportView(table_whour);
 	}
 }
