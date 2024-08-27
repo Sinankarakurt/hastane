@@ -48,7 +48,7 @@ public class Hasta extends User
 				break;
 			}
 			
-			if (duplicate)
+			if (!duplicate)
 			{
 					  preparedStatement=con.prepareStatement(query);
 					  preparedStatement.setString(1, tcno);

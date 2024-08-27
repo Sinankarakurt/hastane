@@ -114,6 +114,17 @@ public class LoginGUI extends JFrame
 		w_hasta.add(pfld_hastaPass);
 		
 		JButton btn_hastaRegister = new JButton("Kayıt Ol");
+		btn_hastaRegister.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+		
+				RegisterGUI rGUI=new RegisterGUI();
+				rGUI.setVisible(true);
+				dispose();
+		
+			
+			}
+		});
 		btn_hastaRegister.setBounds(58, 140, 150, 30);
 		w_hasta.add(btn_hastaRegister);
 		
