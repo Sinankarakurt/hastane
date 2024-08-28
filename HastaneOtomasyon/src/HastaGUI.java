@@ -181,7 +181,7 @@ public class HastaGUI extends JFrame {
 		
 		JLabel lbl_seletctDoctor = new JLabel("Doktor Seç");
 		lbl_seletctDoctor.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 14));
-		lbl_seletctDoctor.setBounds(284, 120, 146, 29);
+		lbl_seletctDoctor.setBounds(284, 108, 146, 29);
 		w_appointment.add(lbl_seletctDoctor);
 		
 		JButton btn_selectDoctor = new JButton("Seç");
@@ -214,10 +214,10 @@ public class HastaGUI extends JFrame {
 				}
 			}
 		});
-		btn_selectDoctor.setBounds(284, 160, 146, 29);
+		btn_selectDoctor.setBounds(284, 148, 146, 29);
 		w_appointment.add(btn_selectDoctor);
 		
-		JLabel lbl_whour = new JLabel("Çalişma Saatleri");
+		JLabel lbl_whour = new JLabel("Uygun Saatler");
 		lbl_whour.setBounds(440, 17, 113, 24);
 		w_appointment.add(lbl_whour);
 		
@@ -227,6 +227,15 @@ public class HastaGUI extends JFrame {
 		
 		table_whour = new JTable(whourModel);
 		scroll_whour.setViewportView(table_whour);
+		
+		JLabel lbl_randevuAl = new JLabel("Randevu ");
+		lbl_randevuAl.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 14));
+		lbl_randevuAl.setBounds(284, 188, 146, 29);
+		w_appointment.add(lbl_randevuAl);
+		
+		JButton btn_addAppoint = new JButton("Randevu Al");
+		btn_addAppoint.setBounds(284, 228, 146, 29);
+		w_appointment.add(btn_addAppoint);
 		table_whour.getColumnModel().getColumn(0).setPreferredWidth(5);
 	}
 }
