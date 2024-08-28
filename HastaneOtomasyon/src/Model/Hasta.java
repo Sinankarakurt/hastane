@@ -70,7 +70,41 @@ public class Hasta extends User
 		else 
 			return false;
 	}
-	
+//-----------------------------------------------------------------------------------------------
+
+	public boolean addAppointmennt(int doctor_id,int hasta_id,String doctor_name,String hasta_name,String appdate) throws SQLException
+	{
+		Connection con=conn.connDb();
+		
+		int key=0;
+		boolean duplicate=false;
+		
+		String query="INSERT INTO appointment (doctor_id,doctor_name,hasta_id,hasta_name,app_date)  VALUES(?,?,?,?,?)";
+		
+		
+		try {
+			          st=con.createStatement();
+					  preparedStatement=con.prepareStatement(query);
+					  preparedStatement.setInt(1, doctor_id);
+					  preparedStatement.setString(2, doctor_name);
+					  preparedStatement.setInt(3, hasta_id);
+					  preparedStatement.setString(4, hasta_name);
+					  preparedStatement.setString(5, appdate);
+					  preparedStatement.executeUpdate();
+					 
+					  key=1;
+			}
+			
+		 catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		if (key==1)
+			return true;
+		else 
+			return false;
+	}
 	
 	
 }
