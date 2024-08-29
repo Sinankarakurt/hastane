@@ -286,7 +286,7 @@ public class HastaGUI extends JFrame {
 	
 	public void updateWhourModel(int doctor_id)
 	{
-		DefaultTableModel clearModel=(DefaultTableModel) table_doctor.getModel();
+		DefaultTableModel clearModel=(DefaultTableModel) table_whour.getModel();
 		clearModel.setRowCount(0);
 
 		try {
