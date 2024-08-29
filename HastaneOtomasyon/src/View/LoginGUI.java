@@ -133,6 +133,51 @@ public class LoginGUI extends JFrame
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
+				if (fld_hastaTc.getText().length()==0||pfld_hastaPass.getText().length()==0) 
+				{
+					
+					
+				}
+				else
+				{
+
+					try
+					{
+						Connection conn=con.connDb();
+						Statement st;
+						st = conn.createStatement();
+						ResultSet rs=st.executeQuery("SELECT * FROM user");
+						while (rs.next())
+						{
+							if (fld_hastaTc.getText().equals(rs.getString("tcno"))&&pfld_hastaPass.getText().equals(rs.getString("password"))) 
+							{
+								if (rs.getString("type").equals("hasta")) 
+								{
+									Hasta hasta=new Hasta();
+									hasta.setId(rs.getInt("id"));
+									hasta.setTcno(rs.getString("tcno"));
+									hasta.setPass(rs.getString("password"));
+									hasta.setName(rs.getString("name"));
+									hasta.setType(rs.getString("type"));
+									
+								HastaGUI hGUI= new HastaGUI(hasta);
+								hGUI.setVisible(true);
+									dispose();			
+									
+								}
+								
+							
+												
+							} 
+							
+						}
+						
+					} catch (SQLException e1)
+					{
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
 				
 			}
 		});
