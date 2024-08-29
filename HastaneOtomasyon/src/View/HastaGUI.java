@@ -256,6 +256,7 @@ public class HastaGUI extends JFrame {
 			if (control)
 			{
 				Helper.showMsg("success");
+				hasta.updateWhourStatus(selectDoctorID, date);
 				
 			}
 					} catch (SQLException e1) {
