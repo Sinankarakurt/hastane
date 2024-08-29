@@ -257,7 +257,14 @@ public class HastaGUI extends JFrame {
 			{
 				Helper.showMsg("success");
 				hasta.updateWhourStatus(selectDoctorID, date);
+				updateWhourModel(selectDoctorID);
 				
+				
+				
+			}
+			else
+			{
+				Helper.showMsg("error");
 			}
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
