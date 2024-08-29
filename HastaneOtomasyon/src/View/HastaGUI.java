@@ -290,18 +290,18 @@ public class HastaGUI extends JFrame {
 		clearModel.setRowCount(0);
 
 		try {
-			for (int i = 0; i < clinic.getClinicDoctorList(doctor_id).size(); i++) 
+			for (int i = 0; i < whour.getWhourList(doctor_id).size(); i++)
 			{
-				doctorData[0]=clinic.getClinicDoctorList(doctor_id).get(i).getId();
-				doctorData[1]=clinic.getClinicDoctorList(doctor_id).get(i).getName();
-				doctorModel.addRow(doctorData);
+				whourData[0]=whour.getWhourList(doctor_id).get(i).getId();
+				whourData[1]=whour.getWhourList(doctor_id).get(i).getWdate();
+				whourModel.addRow(whourData);
 			}
-			
 			
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		//
 	}
 	
 }
