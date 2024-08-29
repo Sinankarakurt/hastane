@@ -276,4 +276,25 @@ public class HastaGUI extends JFrame {
 		w_appointment.add(btn_addAppoint);
 		table_whour.getColumnModel().getColumn(0).setPreferredWidth(5);
 	}
+	
+	public void updateWhourModel(int doctor_id)
+	{
+		DefaultTableModel clearModel=(DefaultTableModel) table_doctor.getModel();
+		clearModel.setRowCount(0);
+
+		try {
+			for (int i = 0; i < clinic.getClinicDoctorList(doctor_id).size(); i++) 
+			{
+				doctorData[0]=clinic.getClinicDoctorList(doctor_id).get(i).getId();
+				doctorData[1]=clinic.getClinicDoctorList(doctor_id).get(i).getName();
+				doctorModel.addRow(doctorData);
+			}
+			
+			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+	
 }
