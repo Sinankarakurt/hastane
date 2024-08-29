@@ -105,6 +105,38 @@ public class Hasta extends User
 		else 
 			return false;
 	}
-	
+//---------------------------------------------------------------------------------------------
+	public boolean updateWhourStatus(int doctor_id,String wdate) throws SQLException
+	{
+		Connection con=conn.connDb();
+		
+		int key=0;
+		boolean duplicate=false;
+		
+		String query="UPDATE whour SET status =? WHERE doctor_id=? AND wdate=?";
+		
+		
+		try {
+			          st=con.createStatement();
+					  preparedStatement=con.prepareStatement(query);
+					  preparedStatement.setString(1, "p");
+					  preparedStatement.setInt(2, doctor_id);
+					  preparedStatement.setString(3, wdate);
+					  
+					  preparedStatement.executeUpdate();
+					 
+					  key=1;
+			}
+			
+		 catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		if (key==1)
+			return true;
+		else 
+			return false;
+	}
 	
 }
