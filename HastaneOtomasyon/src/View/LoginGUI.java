@@ -140,13 +140,14 @@ public class LoginGUI extends JFrame
 				}
 				else
 				{
-
+					boolean key=true;
 					try
 					{
 						Connection conn=con.connDb();
 						Statement st;
 						st = conn.createStatement();
 						ResultSet rs=st.executeQuery("SELECT * FROM user");
+					
 						while (rs.next())
 						{
 							if (fld_hastaTc.getText().equals(rs.getString("tcno"))&&pfld_hastaPass.getText().equals(rs.getString("password"))) 
@@ -162,7 +163,8 @@ public class LoginGUI extends JFrame
 									
 								HastaGUI hGUI= new HastaGUI(hasta);
 								hGUI.setVisible(true);
-									dispose();			
+									dispose();		
+									key=false;
 									
 								}
 								
@@ -177,6 +179,13 @@ public class LoginGUI extends JFrame
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+					
+					if (key)
+					{
+						Helper.showMsg("Böyle bir kullanıcı yoktur");
+						
+					}
+					
 				}
 				
 			}
