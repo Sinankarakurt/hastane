@@ -1,8 +1,11 @@
 package Model;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import Helper.DBConnection;
 
@@ -71,7 +74,67 @@ public void setAppDate(String appDate) {
 	
 //----------------------------------------------------------------------------------------------
 	
-   
+public ArrayList<Appointment> getHastaList(int hasta_id) throws SQLException {
+
+	ArrayList<Appointment> list = new ArrayList<Appointment>();
+	Appointment obj;
+	Connection con = conn.connDb();
+	try {
+		st = con.createStatement();
+		rs = st.executeQuery("SELECT * FROM Appointment WHERE hasta_id="+hasta_id);
+		while (rs.next()) {
+			obj = new Appointment();
+			obj.setId(rs.getInt("id"));
+			obj.setDoctorID(rs.getInt("doctor_id"));
+			obj.setDoctorName(rs.getString("doctor_name"));
+			obj.setHastaID(rs.getInt("hasta_id"));
+			obj.setHastaName(rs.getString("hasta_name"));
+			obj.setAppDate(rs.getString("app_date"));
+			list.add(obj);
+		}
+
+	} catch (Exception e) {
+		// TODO: handle exception
+	} finally {
+		st.close();
+		rs.close();
+		con.close();
+	}
+	return list;
+}
+
+//-------------------------------------------------------------------------
+
+
+public ArrayList<Appointment> getDoctorList(int doctor_id) throws SQLException {
+
+ArrayList<Appointment> list = new ArrayList<Appointment>();
+Appointment obj;
+Connection con = conn.connDb();
+try {
+	st = con.createStatement();
+	rs = st.executeQuery("SELECT * FROM Appointment WHERE doctor_id="+doctor_id);
+	while (rs.next()) {
+		obj = new Appointment();
+		obj.setId(rs.getInt("id"));
+		obj.setDoctorID(rs.getInt("doctor_id"));
+		obj.setDoctorName(rs.getString("doctor_name"));
+		obj.setHastaID(rs.getInt("hasta_id"));
+		obj.setHastaName(rs.getString("hasta_name"));
+		obj.setAppDate(rs.getString("app_date"));
+		list.add(obj);
+	}
+
+} catch (Exception e) {
+	// TODO: handle exception
+} finally {
+	st.close();
+	rs.close();
+	con.close();
+}
+return list;
+}
+
    
    
    

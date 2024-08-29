@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Helper.Helper;
 import Helper.Item;
+import Model.Appointment;
 import Model.Clinic;
 import Model.Hasta;
 import Model.Whour;
@@ -42,6 +43,12 @@ public class HastaGUI extends JFrame {
 	private Object[] whourData=null;
 	private int selectDoctorID=0;
 	private String selectDoctorName=null;
+	private JTable table_appoint;
+	
+	private DefaultTableModel appointModel;
+	
+	private Object[] appointData=null;
+	private Appointment appoint =new Appointment();
 	
 
 	/**
@@ -82,6 +89,23 @@ public class HastaGUI extends JFrame {
 		whourModel.setColumnIdentifiers(colWhour);
 		whourData=new Object[2];
 //---------------------------------------------------------------------------------------
+		
+		appointModel=new DefaultTableModel();
+		Object [] colAppoint=new Object[2];
+		colAppoint[0]="ID";
+		colAppoint[1]="Doktor";
+		colAppoint[2]="Tarih";
+		appointModel.setColumnIdentifiers(colAppoint);
+		appointData=new Object[2];
+		
+		for (int i = 0; i < appoint.getHastaList(hasta.getId()).size(); i++) 
+		{
+			appointData[0]=appoint.getHastaList(hasta.getId()).get(i).getId();
+			appointData[1]=appoint.getHastaList(hasta.getId()).get(i).getDoctorName();
+			appointData[2]=appoint.getHastaList(hasta.getId()).get(i).getAppDate();
+		}
+		
+		
 		
 		
 		
@@ -281,6 +305,17 @@ public class HastaGUI extends JFrame {
 		});
 		btn_addAppoint.setBounds(284, 228, 146, 29);
 		w_appointment.add(btn_addAppoint);
+		
+		JPanel w_appoint = new JPanel();
+		w_tab.addTab("Randevularım", null, w_appoint, null);
+		w_appoint.setLayout(null);
+		
+		JScrollPane w_scrollAppoint = new JScrollPane();
+		w_scrollAppoint.setBounds(10, 11, 660, 316);
+		w_appoint.add(w_scrollAppoint);
+		
+		table_appoint = new JTable();
+		w_scrollAppoint.setViewportView(table_appoint);
 		table_whour.getColumnModel().getColumn(0).setPreferredWidth(5);
 	}
 	
@@ -301,7 +336,29 @@ public class HastaGUI extends JFrame {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		//
+	}
+		//--------------------------------------------------------
+		public void updateAppointModel(int hasta_id)
+		{
+			DefaultTableModel clearModel=(DefaultTableModel) table_appoint.getModel();
+			clearModel.setRowCount(0);
+
+			try {
+
+				for (int i = 0; i < appoint.getHastaList(hasta_id).size(); i++) 
+				{
+					appointData[0]=appoint.getHastaList(hasta_id).get(i).getId();
+					appointData[1]=appoint.getHastaList(hasta_id).get(i).getDoctorName();
+					appointData[2]=appoint.getHastaList(hasta_id).get(i).getAppDate();
+				}
+				
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			//
+		
+		
 	}
 	
 }
