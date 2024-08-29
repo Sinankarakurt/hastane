@@ -91,18 +91,19 @@ public class HastaGUI extends JFrame {
 //---------------------------------------------------------------------------------------
 		
 		appointModel=new DefaultTableModel();
-		Object [] colAppoint=new Object[2];
+		Object [] colAppoint=new Object[3];
 		colAppoint[0]="ID";
 		colAppoint[1]="Doktor";
 		colAppoint[2]="Tarih";
 		appointModel.setColumnIdentifiers(colAppoint);
-		appointData=new Object[2];
+		appointData=new Object[3];
 		
 		for (int i = 0; i < appoint.getHastaList(hasta.getId()).size(); i++) 
 		{
 			appointData[0]=appoint.getHastaList(hasta.getId()).get(i).getId();
 			appointData[1]=appoint.getHastaList(hasta.getId()).get(i).getDoctorName();
 			appointData[2]=appoint.getHastaList(hasta.getId()).get(i).getAppDate();
+			appointModel.addRow(appointData);
 		}
 		
 		
@@ -282,7 +283,7 @@ public class HastaGUI extends JFrame {
 				Helper.showMsg("success");
 				hasta.updateWhourStatus(selectDoctorID, date);
 				updateWhourModel(selectDoctorID);
-				
+				updateAppointModel(hasta.getId());
 				
 				
 			}
@@ -314,7 +315,7 @@ public class HastaGUI extends JFrame {
 		w_scrollAppoint.setBounds(10, 11, 660, 316);
 		w_appoint.add(w_scrollAppoint);
 		
-		table_appoint = new JTable();
+		table_appoint = new JTable(appointModel);
 		w_scrollAppoint.setViewportView(table_appoint);
 		table_whour.getColumnModel().getColumn(0).setPreferredWidth(5);
 	}
@@ -350,6 +351,7 @@ public class HastaGUI extends JFrame {
 					appointData[0]=appoint.getHastaList(hasta_id).get(i).getId();
 					appointData[1]=appoint.getHastaList(hasta_id).get(i).getDoctorName();
 					appointData[2]=appoint.getHastaList(hasta_id).get(i).getAppDate();
+					appointModel.addRow(appointData);
 				}
 				
 			} catch (SQLException e1) {
